@@ -309,7 +309,7 @@ class Baozi extends ComicSource {
 			let images = [];
 			
 			// 处理第一页（还原选择器）
-			const res1 = await Network.get(`https://cn.bzmanga.com/comic/chapter/${comicId}/0_${epId}.html`);
+			const res1 = await Network.get(`https://cn.dzmanga.com/comic/chapter/${comicId}/0_${epId}.html`);
 			if (res1.status !== 200) throw `第一页请求失败，状态码: ${res1.status}`;
 			const doc1 = new HtmlDocument(res1.body);
 			// 关键修复：改回原始选择器 ul.comic-contain > div > amp-img
@@ -319,7 +319,7 @@ class Baozi extends ComicSource {
 			// 处理第二页（增加URL有效性预判）
 			try {
 				// 添加分页存在性检查（示例逻辑）				
-				const res2 = await Network.get(`https://cn.bzmanga.com/comic/chapter/${comicId}/0_${epId}_2.html`);
+				const res2 = await Network.get(`https://cn.dzmanga.com/comic/chapter/${comicId}/0_${epId}_2.html`);
 				if (res2.status === 200) {
 					const doc2 = new HtmlDocument(res2.body);
 					const images2 = doc2.querySelectorAll("ul.comic-contain > div > amp-img").map(e => e.attributes['src']);
@@ -332,7 +332,7 @@ class Baozi extends ComicSource {
 			// 处理第三页（增加URL有效性预判）
 			try {
 				// 添加分页存在性检查（示例逻辑）				
-				const res3 = await Network.get(`https://cn.bzmanga.com/comic/chapter/${comicId}/0_${epId}_3.html`);
+				const res3 = await Network.get(`https://cn.dzmanga.com/comic/chapter/${comicId}/0_${epId}_3.html`);
 				if (res2.status === 200) {
 					const doc2 = new HtmlDocument(res2.body);
 					const images2 = doc2.querySelectorAll("ul.comic-contain > div > amp-img").map(e => e.attributes['src']);
