@@ -328,6 +328,19 @@ class Baozi extends ComicSource {
 			} catch (e) {
 				console.warn("第二页加载失败，已忽略", e);
 			}
+
+			// 处理第三页（增加URL有效性预判）
+			try {
+				// 添加分页存在性检查（示例逻辑）				
+				const res3 = await Network.get(`https://cn.bzmanga.com/comic/chapter/${comicId}/0_${epId}_3.html`);
+				if (res2.status === 200) {
+					const doc2 = new HtmlDocument(res2.body);
+					const images2 = doc2.querySelectorAll("ul.comic-contain > div > amp-img").map(e => e.attributes['src']);
+					images.push(...images2);
+				}
+			} catch (e) {
+				console.warn("第二页加载失败，已忽略", e);
+			}
 			
 			return { images };
 		},
